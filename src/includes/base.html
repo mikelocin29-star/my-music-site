@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }} | Music Notations</title>
+    <style>
+        body { font-family: sans-serif; display: flex; margin: 0; padding: 0; background: #f4f4f9; }
+        /* Sidebar Menu Styling */
+        sidebar { width: 280px; height: 100vh; background: #2c3e50; color: white; position: fixed; padding: 20px; overflow-y: auto; box-sizing: border-box; }
+        sidebar h2 { font-size: 1.2rem; margin-top: 0; }
+        sidebar select { width: 100%; padding: 8px; margin-bottom: 15px; border-radius: 4px; }
+        sidebar ul { padding-left: 20px; list-style-type: none; }
+        sidebar li { margin: 8px 0; }
+        sidebar a { color: #ecf0f1; text-decoration: none; }
+        sidebar a:hover { text-decoration: underline; color: #3498db; }
+        
+        /* Main Content Area */
+        main { margin-left: 280px; padding: 40px; flex-grow: 1; box-sizing: border-box; }
+        
+        /* Placeholder for your interactive keyboard styling */
+        .keyboard-container { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <sidebar>
+        <h2>Notation Menu</h2>
+        
+        <!-- Dropdown Menu (Automatically Populated) -->
+        <select onchange="if(this.value) window.location.href=this.value;">
+            <option value="">-- Jump to Notation --</option>
+            {% for item in collections.notations %}
+                <option value="{{ item.url }}" {% if item.url == page.url %}selected{% endif %}>{{ item.data.title }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Sidebar List Link Menu (Automatically Populated) -->
+        <ul>
+            {% for item in collections.notations %}
+                <li><a href="{{ item.url }}" {% if item.url == page.url %}style="color: #3498db; font-weight: bold;"{% endif %}>{{ item.data.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </sidebar>
+
+    <main>
+        <h1>{{ title }}</h1>
+        
+        <!-- Unique song content goes here -->
+        {{ content | safe }}
+
+        <!-- Global Online Keyboard Container / Script placement -->
+        <div class="keyboard-container">
+            <h3>Online Keyboard</h3>
+            <!-- Insert your interactive keyboard HTML/JS initialization here -->
+            <p>[Interactive Keyboard Component Loaded]</p>
+        </div>
+    </main>
+
+</body>
+</html>

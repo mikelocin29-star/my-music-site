@@ -1,0 +1,12 @@
+{
+  "name": "my-music-site",
+  "version": "1.0.0",
+  "description": "Notation and online keyboard site",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "start": "npx @11ty/eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}
